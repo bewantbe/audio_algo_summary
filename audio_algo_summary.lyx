@@ -550,6 +550,19 @@ phase transform
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics » Direction of Arrival » SRP-PHAT"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.srp.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 GCC: Generalized cross-correlation
@@ -559,7 +572,7 @@ GCC: Generalized cross-correlation
 MUSIC: MUltiple SIgnal Classification
 \begin_inset CommandInset citation
 LatexCommand cite
-key "noauthor_music_2024"
+key "schmidt1986multiple,noauthor_music_2024"
 literal "false"
 
 \end_inset
@@ -590,6 +603,7 @@ Assume
 \end_inset
 
 .
+ narrowband.
 \end_layout
 
 \end_deeper
@@ -638,29 +652,159 @@ where
 SAMV: iterative semi-parametric method for MUSIC.
 \end_layout
 
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics » Direction of Arrival » MUSIC"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.music.html"
+literal "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset href
+LatexCommand href
+name "NormMUSIC"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.normmusic.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
-CSSM
+TDOA: Time Difference Of Arrival
 \end_layout
 
 \begin_layout Itemize
-WAVES
+CSSM: Coherent Signal Subspace Method
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wang1985coherent"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-TOPS
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Direction of Arrival » CSSM"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.cssm.html"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-FRIDA
+WAVES: Weighted Average of Signal Subspaces
+\begin_inset CommandInset citation
+LatexCommand cite
+key "diclaudio2001wavesweighted"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Software: Pyroomacoustics » Direction of Arrival » WAVES"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.waves.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+TOPS: Test of Orthogonality of Projected Subspaces
+\begin_inset CommandInset citation
+LatexCommand cite
+key "yoon2006topsnew"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics » Direction of Arrival » TOPS"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.tops.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+FRIDA: Finite Rate of Innovation Direction of Arrival
+\begin_inset CommandInset citation
+LatexCommand cite
+key "pan2017fridafribased"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics » Direction of Arrival » FRIDA"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.doa.frida.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 Adaptive Filtering
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics - Adaptive Filtering"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.adaptive.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 LMS: Least Mean Square.
 \end_layout
@@ -702,15 +846,95 @@ d
 
 \begin_layout Itemize
 BSS: Blind Source Separation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "parra2000convolutive,araki2003thefundamental,sawada2004arobust,low2005ablind"
+literal "true"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-L (number microphones) >= N (number of signals)
+Forward model:
+\begin_inset Formula 
+\[
+\boldsymbol{x}(t)=\sum_{k=1}^{K}G(k)\boldsymbol{s}(t-k)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{G}(k)\in\mathbb{R}^{L\times K}$
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
-\begin_layout Standard
+\begin_layout Itemize
+Model:
+\begin_inset Formula 
+\[
+\boldsymbol{y}(\omega,k)=\boldsymbol{W}(\omega)\boldsymbol{x}(\omega,k)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solver: independent component solver, Solve eigen system for 
+\begin_inset Formula $R_{x}(\omega,m)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+L (number microphones) >= N (number of signals)
+\end_layout
+
+\begin_layout Itemize
+Software: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Pyroomacoustics - Blind Source Separation"
+target "https://pyroomacoustics.readthedocs.io/en/pypi-release/pyroomacoustics.bss.html"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+blind noise and acoustic echo cancellation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "low2005ablind"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+d
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
 RIR: Room impulse response
 \end_layout
 
@@ -718,8 +942,191 @@ RIR: Room impulse response
 The Table
 \end_layout
 
+\begin_layout Section
+Unclasified
+\end_layout
+
 \begin_layout Standard
-REF
+Robust Sound Source Tracking Using SRP-PHAT and 3D Convolutional Neural
+ Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "diaz-guerra2021robustsound"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Shoko Araki 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "shokoaraki"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Deep ANC: A deep learning approach to active noise control 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zhang2021deepanc"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Blind and Neural Network-Guided Convolutional Beamformer for Joint Denoising, Dereverberation, and Source Separation"
+target "https://ieeexplore.ieee.org/document/9414264"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Tools From Github
+\end_layout
+
+\begin_layout Standard
+List: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/topics/srp-phat"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "DOA"
+target "https://github.com/wangwei2009/DOA"
+literal "false"
+
+\end_inset
+
+: Estimate the direction of arrival using the SRP-PHAT and GCC-PHAT algorithm.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Microphone-sound-source-localization"
+target "https://github.com/xiaoli1368/Microphone-sound-source-localization"
+literal "false"
+
+\end_inset
+
+: Microphone sound source localization by SRP-PHAT and others numerical
+ methods.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "sound-source-localization-algorithm_DOA_estimation"
+target "https://github.com/WenzheLiu-Speech/sound-source-localization-algorithm_DOA_estimation"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Multi_SSL"
+target "https://github.com/BrownsugarZeer/Multi_SSL"
+literal "false"
+
+\end_inset
+
+: Combine sound source separation with SRP-PHAT to achieve multi-source
+ localization
+\end_layout
+
+\begin_layout Standard
+List: 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/topics/acoustic-echo-cancellation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "pyaec"
+target "https://github.com/ewan-xu/pyaec"
+literal "false"
+
+\end_inset
+
+: simple and efficient python implemention of a series of adaptive filters....
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "MetaAF"
+target "https://github.com/adobe-research/MetaAF"
+literal "false"
+
+\end_inset
+
+: Control adaptive filters with neural networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "pyroomacoustics"
+target "https://github.com/LCAV/pyroomacoustics?tab=readme-ov-file"
+literal "false"
+
+\end_inset
+
+: Pyroomacoustics is a package for audio signal processing for indoor applicatio
+ns.
+ It was developed as a fast prototyping platform for beamforming algorithms
+ in indoor scenarios.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "RealPython - Speech recognition"
+target "https://realpython.com/python-speech-recognition/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
