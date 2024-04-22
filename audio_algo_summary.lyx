@@ -96,25 +96,104 @@ Summary for conventional audio processing algorithms
 \end_layout
 
 \begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\var}{\,\textrm{var}\,}
+{\,\textrm{var}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cov}{\,\textrm{cov}\,}
+{\,\textrm{cov}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\corr}{\,\textrm{corr}\,}
+{\,\textrm{corr}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\ra}{\rightarrow}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\inf}{\infty}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\MI}[2]{\,\mathrm{I}\left(#1\,;#2\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\KL}[2]{\,D_{\mathrm{KL}}\left(#1\parallel#2\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\d}{\,\mathrm{d}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\E}{\,\mathrm{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Prerequisites: Calculus, Linear algebra, Basics of complex analysis, Basics
- of Physics.
+ of Physics, Digital Signal Processing.
 \end_layout
 
 \begin_layout Section
 Terminology
 \end_layout
 
+\begin_layout Subsubsection*
+Basic notation
+\end_layout
+
 \begin_layout Standard
 Input: 
-\begin_inset Formula $x$
+\begin_inset Formula $x(t)$
 \end_inset
 
  (single channel), or 
-\begin_inset Formula $\{x_{k}\}_{k=1}^{m}$
+\begin_inset Formula $\{x_{j}(t)\}_{k=1}^{m}$
 \end_inset
 
 , 
-\begin_inset Formula $\boldsymbol{x}$
+\begin_inset Formula $\boldsymbol{x}(t)$
 \end_inset
 
  (multi-channel).
@@ -122,12 +201,160 @@ Input:
 
 \begin_layout Standard
 Output: 
-\begin_inset Formula $y$
+\begin_inset Formula $y(t)$
+\end_inset
+
+, 
+\begin_inset Formula $y_{j}(t)$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{y}(t)$
 \end_inset
 
 .
 \end_layout
 
+\begin_layout Standard
+Source signal: 
+\begin_inset Formula $s(t)$
+\end_inset
+
+, 
+\begin_inset Formula $s_{j}(t)$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{s}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Noise: 
+\begin_inset Formula $n(t)$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{n}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Covariance matrix: 
+\begin_inset Formula $R=\cov(\boldsymbol{x}\boldsymbol{x}^{T})$
+\end_inset
+
+.
+ Usually replaced by average along the time axis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\cdot^{*}$
+\end_inset
+
+ means complex conjugate, 
+\begin_inset Formula $\cdot^{H}$
+\end_inset
+
+ means complex conjugate and transpose.
+\end_layout
+
+\begin_layout Standard
+All vectors are column vectors by default.
+\end_layout
+
+\begin_layout Standard
+Sometimes, the 
+\begin_inset Formula $t$
+\end_inset
+
+ is omited for simplicity.
+\end_layout
+
+\begin_layout Standard
+Usually the signals are assumed zero mean.
+\end_layout
+
+\begin_layout Standard
+In most case, the power (square of RMS) of a signal can be viewed as the
+ variance of the signal, i.e.
+\begin_inset Formula 
+\begin{align*}
+\mathrm{Pow}(x)=\mathrm{RMS}^{2}(x) & =\frac{1}{T}\int_{0}^{T}|x(t)|^{2}\d t\\
+ & \approx\frac{1}{T}\sum_{j=1}^{n}|x(j\Delta t)|^{2}\Delta t\quad(n=T/\Delta t)\\
+ & =\frac{1}{n}\sum_{j=1}^{n}|x(j\Delta t)|^{2}\\
+ & \approx\E\left(x(t)x^{*}(t)\right)\\
+ & =\var(x)
+\end{align*}
+
+\end_inset
+
+a major exception is when 
+\begin_inset Formula $\E(x(t))\neq0$
+\end_inset
+
+, 
+\begin_inset Formula $\exists t$
+\end_inset
+
+.
+ The approximation 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\approx$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ becomes equal 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $=$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ when 
+\begin_inset Formula $n\rightarrow\infty$
+\end_inset
+
+, 
+\begin_inset Formula $T\rightarrow\infty$
+\end_inset
+
+ with ergodicity, or when we take expectation 
+\begin_inset Formula $\E\left(\mathrm{Pow}(x)\right)=\var(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Algorithms
+\end_layout
+
+\begin_layout Itemize
+Acoustic location (acoustic source localization)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DOA: Direction of Arrival
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Beamforming
 \end_layout
@@ -135,12 +362,21 @@ Beamforming
 \begin_deeper
 \begin_layout Itemize
 DAS: Delay-and-sum.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vincent_perrot_so_2021"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Model: 
-\begin_inset Formula $y=\sum_{k=1}^{m}w_{k}x_{k}$
+\begin_inset Formula $y(t)=\sum_{j=1}^{m}w_{j}x_{j}(t)$
 \end_inset
 
 
@@ -148,7 +384,7 @@ Model:
 
 \begin_layout Itemize
 Solve: 
-\begin_inset Formula $\{w_{k}\}$
+\begin_inset Formula $\{w_{j}\}$
 \end_inset
 
  by time delay according to wavefront.
@@ -160,8 +396,85 @@ MVDR: minimum variance distortionless response.
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "guo2012teaching"
+key "guo_teaching_2012"
 literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Forward Model: 
+\begin_inset Formula $\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\theta_{k})s_{k}(t)+\boldsymbol{n}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{s}(t)$
+\end_inset
+
+: narrowband signals.
+ 
+\begin_inset Formula $s_{1}(t)$
+\end_inset
+
+ is the desired/presumed signal.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+: DOA of the 
+\begin_inset Formula $k$
+\end_inset
+
+-th signal.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{a}(\theta_{k})$
+\end_inset
+
+: array manifold (phase lag of the configuration, steering vectors) of 
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Model: 
+\begin_inset Formula $y(t)=\boldsymbol{w}^{T}\boldsymbol{x}(t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solve: 
+\begin_inset Formula $\boldsymbol{w}$
+\end_inset
+
+ by 
+\begin_inset Formula 
+\[
+\min_{\boldsymbol{w}}\var(y)\Longleftrightarrow\min_{\boldsymbol{w}}\boldsymbol{w}^{H}R\boldsymbol{w}
+\]
+
+\end_inset
+
+subject to
+\begin_inset Formula 
+\[
+\var(y)\approx\var(s_{1})\Longleftrightarrow\boldsymbol{w}^{H}\boldsymbol{a}(\theta_{1})=1
+\]
 
 \end_inset
 
@@ -170,18 +483,162 @@ literal "true"
 
 \end_deeper
 \begin_layout Itemize
-DOA: Direction of Arrival
+SRP: Steered-response power 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_steered-response_nodate"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-SRP-PHAT
+Model: 
+\begin_inset Formula $y(t)=\sum_{j=1}^{m}x_{j}(t-\tau_{j}(\boldsymbol{p}))$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{p}$
+\end_inset
+
+ is the presumed position of sound source.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solve: 
+\begin_inset Formula $\boldsymbol{p}$
+\end_inset
+
+ by
+\begin_inset Formula 
+\[
+\max_{\boldsymbol{p}}\var(y)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-MUSIC
+SRP-PHAT: Steered-response power with phase transform
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+weight the spectrum by 
+\begin_inset Quotes eld
+\end_inset
+
+phase transform
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Formula $1/\left(\hat{x}_{j_{1}}(\omega)\hat{x}_{j_{2}}^{*}(\omega)\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+GCC: Generalized cross-correlation
+\end_layout
+
+\begin_layout Itemize
+MUSIC: MUltiple SIgnal Classification
+\begin_inset CommandInset citation
+LatexCommand cite
+key "noauthor_music_2024"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Forward Model: 
+\begin_inset Formula $\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\omega_{k})s_{k}(t)+\boldsymbol{n}(t)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\{\boldsymbol{a}(\omega_{k})\}$
+\end_inset
+
+ are the steering vectors, together they form a Vandermonde matrix.
+\end_layout
+
+\begin_layout Itemize
+Assume 
+\begin_inset Formula $m>K$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Model (for test of noise only): 
+\begin_inset Formula $y=\boldsymbol{w}^{H}(\omega)\boldsymbol{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{w}(\omega)=\begin{bmatrix}1 & e^{\mathrm{i}\omega} & \cdots & e^{\mathrm{i}(m-1)\omega}\end{bmatrix}^{T}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Solve:
+\begin_inset Formula 
+\[
+\max_{\omega}\frac{1}{\boldsymbol{w}^{H}(\omega)U_{N}U_{N}^{H}\boldsymbol{w}(\omega)}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $U_{N}\in\mathbb{C}^{m\times(m-K)}$
+\end_inset
+
+ is the space of noise, comes from 
+\begin_inset Formula $(m-K)$
+\end_inset
+
+ smallest eigenvector of 
+\begin_inset Formula $R=\cov(\boldsymbol{x})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+SAMV: iterative semi-parametric method for MUSIC.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 CSSM
 \end_layout
