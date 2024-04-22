@@ -171,6 +171,22 @@ Summary for conventional audio processing algorithms
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Prerequisites: Calculus, Linear algebra, Basics of complex analysis, Basics
  of Physics, Digital Signal Processing.
 \end_layout
@@ -181,6 +197,14 @@ Terminology
 
 \begin_layout Subsubsection*
 Basic notation
+\end_layout
+
+\begin_layout Standard
+Usually the signals are assumed zero mean.
+\end_layout
+
+\begin_layout Standard
+All vectors are column vectors by default.
 \end_layout
 
 \begin_layout Standard
@@ -245,7 +269,7 @@ Noise:
 
 \begin_layout Standard
 Covariance matrix: 
-\begin_inset Formula $R=\cov(\boldsymbol{x}\boldsymbol{x}^{T})$
+\begin_inset Formula $R=\cov(\boldsymbol{x})=\E(\boldsymbol{x}\boldsymbol{x}^{T})$
 \end_inset
 
 .
@@ -264,22 +288,6 @@ Covariance matrix:
 \end_layout
 
 \begin_layout Standard
-All vectors are column vectors by default.
-\end_layout
-
-\begin_layout Standard
-Sometimes, the 
-\begin_inset Formula $t$
-\end_inset
-
- is omited for simplicity.
-\end_layout
-
-\begin_layout Standard
-Usually the signals are assumed zero mean.
-\end_layout
-
-\begin_layout Standard
 In most case, the power (square of RMS) of a signal can be viewed as the
  variance of the signal, i.e.
 \begin_inset Formula 
@@ -293,7 +301,7 @@ In most case, the power (square of RMS) of a signal can be viewed as the
 
 \end_inset
 
-a major exception is when 
+a notable exception is when 
 \begin_inset Formula $\E(x(t))\neq0$
 \end_inset
 
@@ -339,27 +347,18 @@ a major exception is when
 \end_inset
 
 .
+ Essentially, this is the ergodicity property of signal: average over time
+ equals average over trials.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Section
 Algorithms
 \end_layout
 
-\begin_layout Itemize
-Acoustic location (acoustic source localization)
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-DOA: Direction of Arrival
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 Beamforming
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 DAS: Delay-and-sum.
  
@@ -376,7 +375,11 @@ literal "false"
 \begin_deeper
 \begin_layout Itemize
 Model: 
-\begin_inset Formula $y(t)=\sum_{j=1}^{m}w_{j}x_{j}(t)$
+\begin_inset Formula 
+\[
+y(t)=\sum_{j=1}^{m}w_{j}x_{j}(t)
+\]
+
 \end_inset
 
 
@@ -387,7 +390,7 @@ Solve:
 \begin_inset Formula $\{w_{j}\}$
 \end_inset
 
- by time delay according to wavefront.
+ by time delay according to presumed wavefront.
 \end_layout
 
 \end_deeper
@@ -407,10 +410,14 @@ literal "true"
 \begin_deeper
 \begin_layout Itemize
 Forward Model: 
-\begin_inset Formula $\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\theta_{k})s_{k}(t)+\boldsymbol{n}(t)$
+\begin_inset Formula 
+\[
+\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\theta_{k})s_{k}(t)+\boldsymbol{n}(t)
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_deeper
@@ -451,7 +458,11 @@ Forward Model:
 \end_deeper
 \begin_layout Itemize
 Model: 
-\begin_inset Formula $y(t)=\boldsymbol{w}^{T}\boldsymbol{x}(t)$
+\begin_inset Formula 
+\[
+y(t)=\boldsymbol{w}^{T}\boldsymbol{x}(t)
+\]
+
 \end_inset
 
 
@@ -482,6 +493,14 @@ subject to
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Acoustic Source Localization - DOA
+\end_layout
+
+\begin_layout Standard
+DOA: Direction of Arrival
+\end_layout
+
 \begin_layout Itemize
 SRP: Steered-response power 
 \begin_inset CommandInset citation
@@ -497,7 +516,11 @@ literal "false"
 \begin_deeper
 \begin_layout Itemize
 Model: 
-\begin_inset Formula $y(t)=\sum_{j=1}^{m}x_{j}(t-\tau_{j}(\boldsymbol{p}))$
+\begin_inset Formula 
+\[
+y(t)=\sum_{j=1}^{m}x_{j}(t-\tau_{j}(\boldsymbol{p}))
+\]
+
 \end_inset
 
 
@@ -508,7 +531,22 @@ Model:
 \begin_inset Formula $\boldsymbol{p}$
 \end_inset
 
- is the presumed position of sound source.
+: the presumed position of sound source.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\tau_{j}(\boldsymbol{p})$
+\end_inset
+
+: the time delay from 
+\begin_inset Formula $\boldsymbol{p}$
+\end_inset
+
+to 
+\begin_inset Formula $j$
+\end_inset
+
+-th microphone.
 \end_layout
 
 \end_deeper
@@ -583,10 +621,14 @@ literal "false"
 \begin_deeper
 \begin_layout Itemize
 Forward Model: 
-\begin_inset Formula $\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\omega_{k})s_{k}(t)+\boldsymbol{n}(t)$
+\begin_inset Formula 
+\[
+\boldsymbol{x}(t)=\sum_{k=1}^{K}\boldsymbol{a}(\omega_{k})s_{k}(t)+\boldsymbol{n}(t)
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_deeper
@@ -675,10 +717,6 @@ literal "false"
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-TDOA: Time Difference Of Arrival
-\end_layout
-
 \begin_layout Itemize
 CSSM: Coherent Signal Subspace Method
 \begin_inset CommandInset citation
@@ -786,12 +824,22 @@ literal "false"
 \end_layout
 
 \end_deeper
-\end_deeper
+\begin_layout Subsection
+Acoustic Source Localization - TDOA
+\end_layout
+
 \begin_layout Itemize
+TDOA: Time Difference Of Arrival
+\end_layout
+
+\begin_layout Itemize
+TDE: Time delay estimation
+\end_layout
+
+\begin_layout Subsection
 Adaptive Filtering
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Software: 
 \begin_inset CommandInset href
@@ -812,7 +860,11 @@ LMS: Least Mean Square.
 \begin_deeper
 \begin_layout Itemize
 Model:
-\begin_inset Formula $y^{[\mathrm{Target}]}\approx y=\boldsymbol{w}^{T}\boldsymbol{x}$
+\begin_inset Formula 
+\[
+y^{[\mathrm{Target}]}\approx y=\boldsymbol{w}^{T}\boldsymbol{x}
+\]
+
 \end_inset
 
 
@@ -820,7 +872,11 @@ Model:
 
 \begin_layout Itemize
 Solver: 
-\begin_inset Formula $\boldsymbol{w}_{n+1}=\boldsymbol{w}_{n}+2\mu\boldsymbol{e}_{n}\boldsymbol{x}_{n}$
+\begin_inset Formula 
+\[
+\boldsymbol{w}_{n+1}=\boldsymbol{w}_{n}+2\mu e_{n}\boldsymbol{x}_{n}
+\]
+
 \end_inset
 
 
@@ -831,20 +887,19 @@ Solver:
 RLS: Recursive least squares
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 Echo Cancellation
 \end_layout
 
-\begin_layout Standard
-AEC:
+\begin_layout Subsection
+AEC
 \end_layout
 
 \begin_layout Standard
 d
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsection
 BSS: Blind Source Separation
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -856,7 +911,6 @@ literal "true"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Forward model:
 \begin_inset Formula 
@@ -867,17 +921,12 @@ Forward model:
 \end_inset
 
 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
 \begin_inset Formula $\boldsymbol{G}(k)\in\mathbb{R}^{L\times K}$
 \end_inset
 
 .
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 Model:
 \begin_inset Formula 
@@ -898,10 +947,12 @@ Solver: independent component solver, Solve eigen system for
 .
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 L (number microphones) >= N (number of signals)
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 Software: 
 \begin_inset CommandInset href
@@ -915,7 +966,6 @@ literal "false"
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 blind noise and acoustic echo cancellation
 \begin_inset CommandInset citation
@@ -934,8 +984,33 @@ d
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 RIR: Room impulse response
+\end_layout
+
+\begin_layout Itemize
+Room impulse response estimation by iterative weighted L1-norm 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "crocco2015roomimpulse"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Blind estimation of speech transmission index and room acoustic parameters
+ based on the extended model of room impulse response 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "duangpummet2022blindestimation"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1134,7 +1209,7 @@ literal "false"
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "au_algo"
-options "plain"
+options "unsrt"
 
 \end_inset
 
